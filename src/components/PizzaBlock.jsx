@@ -11,7 +11,7 @@ const PizzaBlock = ({price, title, imageUrl, sizes, types}) => {
     "thin",
     "traditional"
   ]
-  console.log("title",title)
+
   return (
 
     <div className="pizza-block">

@@ -19,9 +19,9 @@ const App = () => {
            </div>
           <h2 className="content__title">All pizzas</h2>
           <div className="content__items">
-          {pizzas.map((obj, index)=> (
+          {pizzas.map((obj)=> (
             <PizzaBlock 
-            key={index}
+            key={obj.id}
             {...obj}
             />
           ))}
