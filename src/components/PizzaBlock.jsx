@@ -1,27 +1,27 @@
-const PizzaBlock = () => {
+const PizzaBlock = ({price, title}) => {
   return (
 
-    <div class="pizza-block">
+    <div className="pizza-block">
     <img
-      class="pizza-block__image"
+      className="pizza-block__image"
       src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
       alt="Pizza"
     />
-    <h4 class="pizza-block__title">Сheese-pizza</h4>
-    <div class="pizza-block__selector">
+    <h4 className="pizza-block__title">{title}</h4>
+    <div className="pizza-block__selector">
       <ul>
-        <li class="active">Thin</li>
+        <li className="active">thin</li>
         <li>traditional</li>
       </ul>
       <ul>
-        <li class="active">6"</li>
+        <li className="active">6"</li>
         <li>10"</li>
         <li>14"</li>
       </ul>
     </div>
-    <div class="pizza-block__bottom">
-      <div class="pizza-block__price">start from $15</div>
-      <div class="button button--outline button--add">
+    <div className="pizza-block__bottom">
+      <div className="pizza-block__price">start from ${price}</div>
+      <button className="button button--outline button--add">
         <svg
           width="12"
           height="12"
@@ -36,7 +36,7 @@ const PizzaBlock = () => {
         </svg>
         <span>Add</span>
         <i>2</i>
-      </div>
+      </button>
     </div>
   </div>
 
