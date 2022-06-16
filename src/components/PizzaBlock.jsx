@@ -1,22 +1,36 @@
-const PizzaBlock = ({price, title}) => {
+import { useState } from "react"
+
+const PizzaBlock = ({price, title, imageUrl, sizes, types}) => {
+  
+  const [activeType, setActiveType] = useState(0)
+  const [activeSize, setActiveSize] = useState(0)
+
+ 
+
+  const pizzaTypeName = [
+    "thin",
+    "traditional"
+  ]
+  console.log("title",title)
   return (
 
     <div className="pizza-block">
     <img
       className="pizza-block__image"
-      src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+      src={imageUrl}
       alt="Pizza"
     />
     <h4 className="pizza-block__title">{title}</h4>
     <div className="pizza-block__selector">
       <ul>
-        <li className="active">thin</li>
-        <li>traditional</li>
+      {types.map((type, index)=> (
+        <li onClick={()=>setActiveType(index)} key={index} className={activeType === index ? "active" : ""}>{pizzaTypeName[type]}</li>
+      ))}
       </ul>
       <ul>
-        <li className="active">6"</li>
-        <li>10"</li>
-        <li>14"</li>
+      {sizes.map((size, index)=> (
+        <li onClick={()=>setActiveSize(index)} key={index} className={activeSize === index ? "active" : ""}>{size}"</li>
+      ))}
       </ul>
     </div>
     <div className="pizza-block__bottom">
@@ -35,7 +49,7 @@ const PizzaBlock = ({price, title}) => {
           />
         </svg>
         <span>Add</span>
-        <i>2</i>
+        <i>0</i>
       </button>
     </div>
   </div>
