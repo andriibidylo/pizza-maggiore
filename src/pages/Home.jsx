@@ -16,7 +16,9 @@ const Home = () => {
   const [sortType, setSortType] = useState({
     name: "popular", sortProperty: "raiting"
   })
+  const [currentPage, setCurrentPage] = useState(1)
   const { searchValue } = useContext(AppContext)
+
 
   const apiEndpoint = "https://62aba2a1bd0e5d29af136c7a.mockapi.io"
 
@@ -26,7 +28,7 @@ const Home = () => {
       setIsloading(true)
       try {
         const { data } = await axios
-          .get(`${apiEndpoint}/itmes?title=${searchValue}&category=${categoryId > 0 ? categoryId : ""}&sortBy=${sortType.sortProperty}&order=desc`)
+          .get(`${apiEndpoint}/itmes?title=${searchValue}&category=${categoryId > 0 ? categoryId : ""}&sortBy=${sortType.sortProperty}&order=desc&page=${currentPage}&limit=8`)
         setItems(data)
         setIsloading(false)
       } catch (err) {
@@ -34,7 +36,7 @@ const Home = () => {
       }
       window.scrollTo(0, 0)
     })()
-  }, [categoryId, sortType,searchValue])
+  }, [categoryId, sortType, searchValue,currentPage])
 
 
   return (
@@ -59,7 +61,7 @@ const Home = () => {
             ))}
         </div>
   
-      <Pagination />
+      <Pagination currentPage={currentPage} onClickPage={setCurrentPage} />
     </>
   )
 }
