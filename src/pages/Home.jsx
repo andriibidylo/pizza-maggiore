@@ -18,6 +18,7 @@ const Home = () => {
       } catch (err) {
         console.error(err)
       }
+      window.scrollTo(0,0)
     })()
   }, [])
   return (
