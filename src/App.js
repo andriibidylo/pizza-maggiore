@@ -3,6 +3,7 @@ import './scss/app.scss';
 import Header from './components/Header'
 import Home from './pages/Home'
 import Error from './pages/Error'
+import Cart from './pages/Cart'
 import {  Routes, Route } from 'react-router';
 
 
@@ -15,7 +16,8 @@ const App = () => {
       <div className="container">
       <Routes>
       <Route path="/" exact element={<Home/>}/>
-      <Route path="error" exact element={<Error/>}/>
+      <Route path="/cart" exact element={<Cart/>}/>
+      <Route path="*" exact element={<Error/>}/>
       </Routes>
       </div>
     </div>
