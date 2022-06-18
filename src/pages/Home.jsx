@@ -13,20 +13,22 @@ import { setCategoryId, setSortType } from '../redux/slices/filterSlice'
 const Home = () => {
   const [items, setItems] = useState([])
   const [isLoading, setIsloading] = useState(true)
-  const {categoryId, sortType } = useSelector(state => state.filters)
-  const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
   const { searchValue } = useContext(AppContext)
-
+  const {categoryId, sortType } = useSelector(state => state.filters)
+  const dispatch = useDispatch()
+  
   const apiEndpoint = "https://62aba2a1bd0e5d29af136c7a.mockapi.io"
 
-  useEffect(() => {
+  
 
+  useEffect(() => {
     (async () => {
+      let searchByCategory = categoryId > 0 ? `&category=${categoryId}` : ""
       setIsloading(true)
       try {
         const { data } = await axios
-          .get(`${apiEndpoint}/itmes?title=${searchValue}&category=${categoryId > 0 ? categoryId : ""}&sortBy=${sortType.sortProperty}&order=desc&page=${currentPage}&limit=8`)
+          .get(`${apiEndpoint}/itmes?sortBy=${sortType.sortProperty}${searchByCategory}&order=desc&page=${currentPage}&limit=8&search=${searchValue}`)
         setItems(data)
         setIsloading(false)
       } catch (err) {
