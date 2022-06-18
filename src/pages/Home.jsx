@@ -7,18 +7,16 @@ import axios from 'axios';
 import { Pagination } from '../components/Pagination'
 import { useContext } from 'react'
 import { AppContext } from '../context';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategoryId, setSortType } from '../redux/slices/filterSlice'
 
 const Home = () => {
   const [items, setItems] = useState([])
   const [isLoading, setIsloading] = useState(true)
-  const [categoryId, setCategoryId] = useState(0)
-  const [sortType, setSortType] = useState({
-    name: "popular", sortProperty: "raiting"
-  })
+  const {categoryId, sortType } = useSelector(state => state.filters)
+  const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1)
   const { searchValue } = useContext(AppContext)
-
 
   const apiEndpoint = "https://62aba2a1bd0e5d29af136c7a.mockapi.io"
 
@@ -43,8 +41,8 @@ const Home = () => {
     <>
      
         <div className="content__top">
-          <Categories value={categoryId} onChangeCategory={(id) => setCategoryId(id)} />
-          <Sort value={sortType} onChangeSort={(el) => setSortType(el)} />
+          <Categories value={categoryId} onChangeCategory={(id) => dispatch(setCategoryId(id))} />
+          <Sort value={sortType} onChangeSort={(obj) => dispatch(setSortType(obj))} />
         </div>
         <h2 className="content__title">All pizzas</h2>
         <div className="content__items">
