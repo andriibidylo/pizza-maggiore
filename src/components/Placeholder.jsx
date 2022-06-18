@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader'
 
-const Placeholder = () => {
+export const Placeholder = () => {
 return (
 <ContentLoader
     className="pizza-block"
@@ -18,6 +18,4 @@ return (
   </ContentLoader>
 )
 }
-
-export default Placeholder
 

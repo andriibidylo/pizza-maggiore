@@ -1,14 +1,14 @@
 import { useState } from "react"
 
-const Sort = ({value, onChangeSort }) => {
-
-  const [open, setOpen] = useState(false)
-
-  const list = [
+export const list = [
   {name: "popular", sortProperty: "raiting"},
   {name: "price", sortProperty: "price"},
   {name: "name", sortProperty: "title"}
  ]
+
+export const Sort = ({value, onChangeSort }) => {
+
+  const [open, setOpen] = useState(false)
 
   const onClickListItems = (index) => {
     onChangeSort(index)
@@ -46,5 +46,3 @@ const Sort = ({value, onChangeSort }) => {
 
   )
 }
-
-export default Sort

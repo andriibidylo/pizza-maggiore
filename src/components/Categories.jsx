@@ -1,6 +1,6 @@
 
 
-const Categories = ({value, onChangeCategory}) => {
+export const Categories = ({value, onChangeCategory}) => {
 
   const categories = [
     "All",
@@ -22,5 +22,3 @@ const Categories = ({value, onChangeCategory}) => {
 
   )
 }
-
-export default Categories
