@@ -8,14 +8,13 @@ import { Pagination } from '../components/Pagination'
 import { useContext } from 'react'
 import { AppContext } from '../context';
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategoryId, setSortType } from '../redux/slices/filterSlice'
+import { setCategoryId, setSortType, setCurrentPage } from '../redux/slices/filterSlice'
 
 const Home = () => {
   const [items, setItems] = useState([])
   const [isLoading, setIsloading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
   const { searchValue } = useContext(AppContext)
-  const {categoryId, sortType } = useSelector(state => state.filters)
+  const {categoryId, sortType, currentPage} = useSelector(state => state.filters)
   const dispatch = useDispatch()
   
   const apiEndpoint = "https://62aba2a1bd0e5d29af136c7a.mockapi.io"
@@ -61,7 +60,7 @@ const Home = () => {
             ))}
         </div>
   
-      <Pagination currentPage={currentPage} onClickPage={setCurrentPage} />
+      <Pagination currentPage={currentPage} onClickPage={(page)=>dispatch(setCurrentPage(page))} />
     </>
   )
 }
