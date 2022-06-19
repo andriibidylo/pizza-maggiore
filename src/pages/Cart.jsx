@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
-
+import { useSelector, useDispatch } from 'react-redux'
+import {CartItem} from '../components/CartItem'
+import { addItem, subtractItem, removeItem, clearCart } from '../redux/slices/cartSlice';
 const Cart = () => {
+
+  const dispatch = useDispatch();
+  const {totalPrice, items} = useSelector(state => state.cart)
+  const onClickRemoveAll = () => {
+    if (window.confirm('Please confirm before deleting all items')) {
+      dispatch(clearCart());
+    }
+  };
   return (
     <div className="container container--cart">
     <div className="cart">
@@ -66,21 +76,26 @@ const Cart = () => {
               strokeLinejoin="round"></path>
           </svg>
 
-          <span>Remove all items</span>
+          <span onClick={onClickRemoveAll}>Remove all items</span>
         </div>
       </div>
       <div className="content__items">
-    
+    {items.map((el, index)=>(
+      <CartItem
+      key={index}
+      {...el}
+      />
+    ))}
       </div>
       <div className="cart__bottom">
         <div className="cart__bottom-details">
           <span>
             {' '}
-            Quantity: <b>12</b>{' '}
+            Quantity: <b>{items.length}</b>{' '}
           </span>
           <span>
             {' '}
-            Total price: <b>$32</b>{' '}
+            Total price: <b>$ {totalPrice}</b>{' '}
           </span>
         </div>
         <div className="cart__bottom-buttons">
