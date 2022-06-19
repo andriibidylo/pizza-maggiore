@@ -50,13 +50,14 @@ const Home = () => {
  // If was the first render and params were changed
  useEffect(() => {
   if (isMounted.current) {
-    const queryString = qs.stringify({
+    const params = {
+      categoryId: categoryId > 0 ? categoryId : null,
       sortProperty: sortType.sortProperty,
-      categoryId,
       currentPage,
-    });
+    }
+    const queryString = qs.stringify(params, {skipNulls: true });
   
-    navigate(`?${queryString}`);
+    navigate(`/?${queryString}`);
   }
  
   isMounted.current = true;
@@ -76,7 +77,7 @@ useEffect(() => {
       }),
     );
  
-    isSearch.current = false;
+    isSearch.current = true;
   }
 }, []);
 
