@@ -1,24 +1,23 @@
 import qs from 'qs';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import axios from 'axios';
 import { Categories } from '../components/Categories'
 import {Sort, list} from '../components/Sort'
 import {PizzaBlock} from '../components/PizzaBlock'
 import {Placeholder} from '../components/Placeholder'
 
-import {Pagination} from '../components/Pagination/index'
+import {Pagination} from '../components/Pagination'
 
 import { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+
 import { useContext } from 'react'
 import { AppContext } from '../context';
 
-
 import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
 
-
 const Home = () => {
+
   const [items, setItems] = useState([])
   const [isLoading, setIsloading] = useState(true)
   const { searchValue } = useContext(AppContext)
@@ -31,10 +30,10 @@ const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-
-
     const fetchData = async () => {
+   
       let searchByCategory = categoryId > 0 ? `&category=${categoryId}` : ""
+      
       setIsloading(true)
       try {
         const { data } = await axios
@@ -56,9 +55,10 @@ const Home = () => {
       categoryId,
       currentPage,
     });
-
+  
     navigate(`?${queryString}`);
   }
+ 
   isMounted.current = true;
 }, [categoryId, sortType.sortProperty, currentPage]);
 
@@ -67,15 +67,16 @@ useEffect(() => {
   if (window.location.search) {
     const params = qs.parse(window.location.search.substring(1));
 
-    const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+    const sortType = list.find((obj) => obj.sortProperty === params.sortProperty);
 
     dispatch(
       setFilters({
         ...params,
-        sort,
+        sortType,
       }),
     );
-    isSearch.current = true;
+ 
+    isSearch.current = false;
   }
 }, []);
 
@@ -86,7 +87,7 @@ useEffect(() => {
   if (!isSearch.current) {
     fetchData();
   }
-
+ 
   isSearch.current = false;
 }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
 
