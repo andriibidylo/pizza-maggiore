@@ -23,7 +23,7 @@ export const PizzaBlock = ({ id, price, title, imageUrl, sizes, types }) => {
       price,
       imageUrl,
       type: pizzaTypeName[activeType],
-      size: activeSize,
+      size: sizes[activeSize],
       count: 1,
     }
     dispatch(addItem(item))

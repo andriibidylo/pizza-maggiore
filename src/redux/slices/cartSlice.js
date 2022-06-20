@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
       }
       
       state.totalCaunt+=1
-      
+
       state.totalPrice = state.items.reduce((sum, obj) => {
         return (obj.price* state.totalCaunt) + sum
       }, 0)
@@ -42,9 +42,12 @@ export const cartSlice = createSlice({
     },
     removeItem: (state, action) =>{
       state.items = state.items.filter(obj => obj.id !== action.payload)
-      
-      // console.log(!!!)
-        // state.itmes = state.items.filter(id => id !== action.payload.id)
+      state.totalCaunt = state.items.reduce((sum, obj) => {
+        return (obj.count) + sum
+      }, 0)
+      state.totalPrice = state.items.reduce((sum, obj) => {
+        return (obj.price * state.totalCaunt) + sum
+      }, 0)
     },
     clearCart: (state) => {
       state.items = []
