@@ -25,7 +25,9 @@ export const CartItem= ({
   const onClickSubtract = () => {
     dispatch(subtractItem(id));
   };
-
+const onClickRemoveItem = ()=>{
+  dispatch(removeItem(id));
+}
 
 
   return (
@@ -42,7 +44,7 @@ export const CartItem= ({
       <div className="cart__item-count">
         <button
           disabled={count === 1}
-          // onClick={onClickSubtract}
+          onClick={onClickSubtract}
           className="button button--outline button--circle cart__item-count-minus">
           <svg
             width="10"
@@ -60,7 +62,7 @@ export const CartItem= ({
         </button>
         <b>{count}</b>
         <button
-          // onClick={onClickPlus}
+          onClick={onClickPlus}
           className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
@@ -80,7 +82,7 @@ export const CartItem= ({
       <div className="cart__item-price">
         <b>$ {price * count}</b>
       </div>
-      <div className="cart__item-remove">
+      <div onClick={onClickRemoveItem} className="cart__item-remove">
         <div className="button button--outline button--circle">
           <svg
             width="10"
