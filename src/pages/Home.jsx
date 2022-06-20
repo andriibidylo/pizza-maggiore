@@ -1,14 +1,12 @@
 import qs from 'qs';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
 import { Categories } from '../components/Categories'
 import {Sort, list} from '../components/Sort'
 import {PizzaBlock} from '../components/PizzaBlock'
 import {Placeholder} from '../components/Placeholder'
-
 import {Pagination} from '../components/Pagination'
-
+import {fetchPizzas} from '../redux/slices/pizzasSlice'
 import { useEffect, useState, useRef } from 'react';
 
 import { useContext } from 'react'
@@ -16,36 +14,20 @@ import { AppContext } from '../context';
 
 import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
 
+
 const Home = () => {
 
-  const [items, setItems] = useState([])
   const [isLoading, setIsloading] = useState(true)
   const { searchValue } = useContext(AppContext)
   const {categoryId, sortType, currentPage} = useSelector(state => state.filters)
+
   const dispatch = useDispatch()
-  
-  const apiEndpoint = "https://62aba2a1bd0e5d29af136c7a.mockapi.io"
+
+  const { items } = useSelector(state => state.pizzas)
 
   const navigate = useNavigate();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
-
-    const fetchData = async () => {
-   
-      let searchByCategory = categoryId > 0 ? `&category=${categoryId}` : ""
-      
-      setIsloading(true)
-      try {
-        const { data } = await axios
-          .get(`${apiEndpoint}/itmes?sortBy=${sortType.sortProperty}${searchByCategory}&order=desc&page=${currentPage}&limit=8&search=${searchValue}`)
-        setItems(data)
-        setIsloading(false)
-      } catch (err) {
-        console.error(err)
-      }
-      window.scrollTo(0, 0)
-    }
-  
 
  // If was the first render and params were changed
  useEffect(() => {
@@ -86,8 +68,18 @@ useEffect(() => {
   window.scrollTo(0, 0);
 
   if (!isSearch.current) {
-    fetchData();
-  }
+   
+      dispatch(fetchPizzas({sortType, categoryId, currentPage,searchValue}))
+ 
+    // dispatch(fetchPizzas({sortType, categoryId, currentPage,searchValue}))
+  
+      
+    }
+   
+    if (items.length > 0){
+      setIsloading(false)}
+    console.log(isLoading)
+  
  
   isSearch.current = false;
 }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
