@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import { useParams, Link, useNavigate  } from 'react-router-dom'
+
 
 const ItemDetails = () => {
   const [pizza, setPizza] = useState(null)
-
+const navigate = useNavigate()
   const { id } = useParams()
   useEffect(() => {
     const featchPizza = async () => {
@@ -14,6 +14,7 @@ const ItemDetails = () => {
         setPizza(data)
       }catch(error){
         console.log(error)
+        navigate('/')
       }
     }
     featchPizza()
@@ -40,7 +41,7 @@ if (!pizza) {
       <h4>${pizza.price}</h4>
       <Link to="/">
         <button className="button button--outline button--add">
-          <span>Назад</span>
+          <span>Back</span>
         </button>
       </Link>
     </div>
