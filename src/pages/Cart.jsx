@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import {CartItem} from '../components/CartItem'
-import {clearCart } from '../redux/slices/cartSlice';
+import {clearCart, selectCart } from '../redux/slices/cartSlice';
 import {CartIsEmpty} from '../components/CartIsEmpty'
 
 
 const Cart = () => {
 
   const dispatch = useDispatch();
-  const {totalPrice, items, totalCaunt} = useSelector(state => state.cart)
+  const {totalPrice, items, totalCaunt} = useSelector(selectCart)
   const onClickRemoveAll = () => {
     if (window.confirm('Please confirm before deleting all items')) {
       dispatch(clearCart());

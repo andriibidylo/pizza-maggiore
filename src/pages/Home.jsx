@@ -5,9 +5,9 @@ import { Sort, list } from '../components/Sort'
 import { PizzaBlock } from '../components/PizzaBlock'
 import { Placeholder } from '../components/Placeholder'
 import { Pagination } from '../components/Pagination'
-import { fetchPizzas } from '../redux/slices/pizzasSlice'
-import { useEffect, useRef } from 'react';
-import { useContext } from 'react'
+import { fetchPizzas, selectPizzas } from '../redux/slices/pizzasSlice'
+import {selectFilters} from '../redux/slices/filterSlice'
+import { useEffect, useRef, useContext } from 'react';
 import { AppContext } from '../context';
 import qs from 'qs';
 import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
@@ -16,11 +16,11 @@ import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux
 const Home = () => {
 
   const { searchValue } = useContext(AppContext)
-  const { categoryId, sortType, currentPage } = useSelector(state => state.filters)
+  const { categoryId, sortType, currentPage } = useSelector(selectFilters)
 
   const dispatch = useDispatch()
 
-  const { items, status } = useSelector(state => state.pizzas)
+  const { items, status } = useSelector(selectPizzas)
 
   const navigate = useNavigate();
   const isSearch = useRef(false);
