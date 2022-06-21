@@ -15,12 +15,13 @@ import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux
 
 const Home = () => {
 
-  const { searchValue } = useContext(AppContext)
-  const { categoryId, sortType, currentPage } = useSelector(selectFilters)
+  // const { searchValue } = useContext(AppContext)
+  const { categoryId, sortType, currentPage, searchValue } = useSelector(selectFilters)
 
   const dispatch = useDispatch()
 
   const { items, status } = useSelector(selectPizzas)
+
 
   const navigate = useNavigate();
   const isSearch = useRef(false);

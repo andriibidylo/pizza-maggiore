@@ -1,17 +1,18 @@
 import styles from './Search.module.scss'
-import { useCallback, useContext, useRef, useState } from 'react'
-import { AppContext } from '../../context';
+import { useCallback, useRef, useState } from 'react'
 import debounce from 'lodash.debounce'
+import {setSearchValue} from '../../redux/slices/filterSlice'
+import {  useDispatch } from 'react-redux';
 
 const Search = () => {
-
+  const dispatch = useDispatch()
   const [value, setValue] = useState("")
-  const { setSearchValue } = useContext(AppContext)
+
   
   // After click clear the input focus on the input
   const searchRef = useRef()
   const clearSearchValue = () => {
-    setSearchValue("")
+    dispatch(setSearchValue(""))
     setValue("")
     searchRef.current.focus()
   }
@@ -19,7 +20,7 @@ const Search = () => {
   // Optimization the search field. Update setSerchValue after some time.
   // eslint-disable-next-line 
   const memorizedSearchValue = useCallback(debounce(str=>{
-    setSearchValue(str) 
+    dispatch(setSearchValue(str)) 
   },350),[])
   
   const onChangeInput = (event) => {

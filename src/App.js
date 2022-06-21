@@ -5,15 +5,10 @@ import Home from './pages/Home'
 import Error from './pages/Error'
 import Cart from './pages/Cart'
 import { Routes, Route } from 'react-router';
-import { AppContext } from './context';
-import { useState } from 'react';
 
 const App = () => {
 
-  const [searchValue, setSearchValue] = useState("")
-
   return (
-    <AppContext.Provider value={{ searchValue, setSearchValue }}>
       <div className="wrapper">
         <Header />
         <div className="content">
@@ -26,7 +21,6 @@ const App = () => {
           </div>
         </div>
       </div>
-    </AppContext.Provider>
   );
 }
 
