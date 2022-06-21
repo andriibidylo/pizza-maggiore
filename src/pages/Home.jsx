@@ -6,12 +6,11 @@ import { PizzaBlock } from '../components/PizzaBlock'
 import { Placeholder } from '../components/Placeholder'
 import { Pagination } from '../components/Pagination'
 import { fetchPizzas, selectPizzas } from '../redux/slices/pizzasSlice'
-import {selectFilters} from '../redux/slices/filterSlice'
-import { useEffect, useRef, useContext } from 'react';
-import { AppContext } from '../context';
+import { selectFilters } from '../redux/slices/filterSlice'
+import { useEffect, useRef } from 'react';
 import qs from 'qs';
 import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
-
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -95,10 +94,15 @@ const Home = () => {
                 />
               )
               : items.map((obj) => (
-                <PizzaBlock
+                <Link
+                  to={`/pizza/${obj.id}`}
                   key={obj.id}
-                  {...obj}
-                />
+                >
+                  <PizzaBlock
+                    {...obj}
+                  />
+                </Link>
+
               ))}
           </div>)}
 

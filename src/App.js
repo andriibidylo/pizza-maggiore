@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Error from './pages/Error'
 import Cart from './pages/Cart'
+import ItemDetails from './pages/ItemDetails'
 import { Routes, Route } from 'react-router';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
             <Routes>
               <Route path="/" exact element={<Home />} />
               <Route path="/cart" exact element={<Cart />} />
+              <Route path="/pizza/:id" exact element={<ItemDetails />}/>
               <Route path="*" exact element={<Error />} />
             </Routes>
           </div>
