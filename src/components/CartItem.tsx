@@ -2,8 +2,17 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem, subtractItem, removeItem } from '../redux/slices/cartSlice';
 
+type CartItemsProps = {
+  id: string,
+  title: string,
+  type: string,
+  size: number,
+  price: number,
+  count: number,
+  imageUrl: string,
+}
 
-export const CartItem= ({
+export const CartItem: React.FC<CartItemsProps> = ({
   id,
   title,
   type,
@@ -25,9 +34,9 @@ export const CartItem= ({
   const onClickSubtract = () => {
     dispatch(subtractItem(id));
   };
-const onClickRemoveItem = ()=>{
-  dispatch(removeItem(id));
-}
+  const onClickRemoveItem = () => {
+    dispatch(removeItem(id));
+  }
 
 
   return (

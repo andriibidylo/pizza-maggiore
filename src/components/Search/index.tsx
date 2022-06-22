@@ -10,11 +10,11 @@ const Search = () => {
 
   
   // After click clear the input focus on the input
-  const searchRef = useRef()
+  const searchRef = useRef<HTMLInputElement>(null)
   const clearSearchValue = () => {
     dispatch(setSearchValue(""))
     setValue("")
-    searchRef.current.focus()
+    searchRef.current?.focus()
   }
 
   // Optimization the search field. Update setSerchValue after some time.
@@ -23,7 +23,7 @@ const Search = () => {
     dispatch(setSearchValue(str)) 
   },350),[])
   
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: any) => {
     setValue(event.target.value)
     memorizedSearchValue(event.target.value)
    

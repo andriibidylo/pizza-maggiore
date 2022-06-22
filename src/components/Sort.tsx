@@ -1,17 +1,28 @@
 import { useEffect, useState, useRef } from "react"
 
-export const list = [
+type itemsListType = {
+  name: string,
+  sortProperty: string
+}
+
+export const list: itemsListType[] = [
   { name: "popular", sortProperty: "raiting" },
   { name: "price", sortProperty: "price" },
   { name: "name", sortProperty: "title" }
 ]
+type SortPropsType = {
+  value: {
+    name: number,
+  },
+  onChangeSort: (arg1:any) => any
+}
 
-export const Sort = ({ value, onChangeSort }) => {
+export const Sort: React.FC<SortPropsType> = ({ value, onChangeSort }) => {
 
   // close the popup window the click out of the popup
-  const sortRef = useRef()
+  const sortRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    const hendleClickOutside = (event) => {
+    const hendleClickOutside = (event:any) => {
       if (!event.path.includes(sortRef.current)) {
         setOpen(false)
       }
@@ -25,7 +36,7 @@ export const Sort = ({ value, onChangeSort }) => {
 
   const [open, setOpen] = useState(false)
 
-  const onClickListItems = (index) => {
+  const onClickListItems = (index:any) => {
     onChangeSort(index)
     setOpen(false)
   }
