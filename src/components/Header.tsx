@@ -24,7 +24,9 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        {location.pathname !== '/cart' &&
+        {(!location.pathname.includes('pizza')
+         && !location.pathname.includes('cart')) 
+         &&
           <Search />
         }
         <div className="header__cart">

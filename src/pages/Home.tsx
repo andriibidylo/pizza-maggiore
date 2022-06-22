@@ -10,7 +10,6 @@ import { selectFilters } from '../redux/slices/filterSlice'
 import { useEffect, useRef } from 'react';
 import qs from 'qs';
 import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
-import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../redux/store'
 
 type SearchPizzaParams = {
@@ -20,6 +19,7 @@ type SearchPizzaParams = {
   search: string;
   currentPage: string;
 };
+
 
 const Home = () => {
 
@@ -107,15 +107,10 @@ const Home = () => {
                 />
               )
               : items.map((obj) => (
-                <Link
-                  to={`/pizza/${obj.id}`}
-                  key={obj.id}
-                >
                   <PizzaBlock
+                    key={obj.id}
                     {...obj}
                   />
-                </Link>
-
               ))}
           </div>)}
 

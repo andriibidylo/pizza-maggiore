@@ -8,6 +8,8 @@ const ItemDetails: React.FC = () => {
     imageUrl: string,
     title: string,
     price: number,
+    rating: number,
+    description: string
   }>()
 
   const navigate = useNavigate()
@@ -31,17 +33,28 @@ const ItemDetails: React.FC = () => {
       <div>Loading ...</div>
     )
   }
+
   return (
 
     <div className="container">
-      <img className="pizza-block__image-big" alt="pizza" src={pizza.imageUrl} />
-      <h2>{pizza.title}</h2>
-      <h4>${pizza.price}</h4>
-      <Link to="/">
-        <button className="button button--outline button--add">
-          <span>Back</span>
-        </button>
-      </Link>
+      <div className="pizza-details">
+        <div className="pizza-details__wrapper">
+          <div>
+            <img className="pizza-details__image" alt="pizza" src={pizza.imageUrl} />
+          </div>
+          <div>
+            <h2 className="pizza-details__title">{pizza.title}</h2>
+            <p className="pizza-details__raiting">Raiting: {pizza.rating}</p>
+            <p>{pizza.description}</p>
+            <p className="pizza-details__price">Price: ${pizza.price}</p>
+            <Link to="/">
+              <button className="button button--outline button--add pizza-details__botton">
+                <span>Back</span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
