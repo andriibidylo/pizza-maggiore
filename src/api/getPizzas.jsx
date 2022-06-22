@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { FetchPizzasType, Pizza } from '../redux/slices/pizzasSlice';
 
 
-export const getAllPizzasApi = async ({
+export const getAllPizzasApi = async({
   sortType,
   categoryId,
   currentPage,

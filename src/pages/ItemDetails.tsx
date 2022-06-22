@@ -34,7 +34,7 @@ const ItemDetails: React.FC = () => {
   return (
 
     <div className="container">
-      <img className="pizza-block__image-big" src={pizza.imageUrl} />
+      <img className="pizza-block__image-big" alt="pizza" src={pizza.imageUrl} />
       <h2>{pizza.title}</h2>
       <h4>${pizza.price}</h4>
       <Link to="/">

@@ -1,29 +1,31 @@
-import { useEffect, useState, useRef } from "react"
-
-type itemsListType = {
+import React, { useEffect, useState, useRef } from "react"
+import {SortType} from '../redux/slices/filterSlice'
+export type SortTypeParams = {
   name: string,
-  sortProperty: string
+  sortProperty: "rating" | "price" | "title"
 }
 
-export const list: itemsListType[] = [
-  { name: "popular", sortProperty: "raiting" },
+export const list: SortTypeParams[] = [
+  { name: "popular", sortProperty: "rating" },
   { name: "price", sortProperty: "price" },
   { name: "name", sortProperty: "title" }
 ]
 type SortPropsType = {
-  value: {
-    name: number,
-  },
-  onChangeSort: (arg1:any) => any
-}
+  value: SortType,
 
+  onChangeSort: (obj:SortTypeParams ) => void
+}
+type PopUpClick = MouseEvent & {
+  path: Node[]
+}
 export const Sort: React.FC<SortPropsType> = ({ value, onChangeSort }) => {
 
   // close the popup window the click out of the popup
   const sortRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    const hendleClickOutside = (event:any) => {
-      if (!event.path.includes(sortRef.current)) {
+    const hendleClickOutside = (event: MouseEvent) => {
+      const _event = event as PopUpClick
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpen(false)
       }
     }
@@ -36,8 +38,8 @@ export const Sort: React.FC<SortPropsType> = ({ value, onChangeSort }) => {
 
   const [open, setOpen] = useState(false)
 
-  const onClickListItems = (index:any) => {
-    onChangeSort(index)
+  const onClickListItems = (obj: SortTypeParams) => {
+    onChangeSort(obj)
     setOpen(false)
   }
   return (
@@ -62,7 +64,7 @@ export const Sort: React.FC<SortPropsType> = ({ value, onChangeSort }) => {
         <div className="sort__popup">
           <ul>
             {list.map((el, index) => (
-              <li onClick={() => onClickListItems(el)} key={index} className={value.name === index ? "active" : ""}>{el.name}</li>
+              <li onClick={() => onClickListItems(el)} key={index} className={Number(value.name) === index ? "active" : ""}>{el.name}</li>
             ))}
           </ul>
         </div>

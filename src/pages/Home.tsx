@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Categories } from '../components/Categories'
 import { Sort, list } from '../components/Sort'
@@ -11,13 +11,22 @@ import { useEffect, useRef } from 'react';
 import qs from 'qs';
 import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../redux/store'
+
+type SearchPizzaParams = {
+  sortProperty: string;
+  order: string;
+  category: string;
+  search: string;
+  currentPage: string;
+};
 
 const Home = () => {
 
   // const { searchValue } = useContext(AppContext)
   const { categoryId, sortType, currentPage, searchValue } = useSelector(selectFilters)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const { items, status } = useSelector(selectPizzas)
 
@@ -45,16 +54,20 @@ const Home = () => {
   // If was the first then check URl-params and dispatch them to store
   useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
 
       const sortType = list.find((obj) => obj.sortProperty === params.sortProperty);
+      if (sortType) {
+        dispatch(
+          setFilters({
+            searchValue: params.search,
+            categoryId: Number(params.category),
+            currentPage: Number(params.currentPage),
+            sortType,
+          }),
+        );
+      }
 
-      dispatch(
-        setFilters({
-          ...params,
-          sortType,
-        }),
-      );
 
       isSearch.current = true;
     }
@@ -106,7 +119,7 @@ const Home = () => {
               ))}
           </div>)}
 
-      <Pagination currentPage={currentPage} onClickPage={(page) => dispatch(setCurrentPage(page))} />
+      <Pagination currentPage={currentPage} onClickPage={(page: number) => dispatch(setCurrentPage(page))} />
     </>
   )
 }

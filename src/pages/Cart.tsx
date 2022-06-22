@@ -86,7 +86,7 @@ const Cart = () => {
         </div>
       </div>
       <div className="content__items">
-    {items.map((el, index)=>(
+    {items.map((el:any, index:number)=>(
       <CartItem
       key={index}
       {...el}

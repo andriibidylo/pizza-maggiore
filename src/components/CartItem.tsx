@@ -27,7 +27,7 @@ export const CartItem: React.FC<CartItemsProps> = ({
     dispatch(
       addItem({
         id,
-      }),
+      } as CartItemsProps ) ,
     );
   };
 

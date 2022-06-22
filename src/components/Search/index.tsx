@@ -1,5 +1,5 @@
 import styles from './Search.module.scss'
-import { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import debounce from 'lodash.debounce'
 import {setSearchValue} from '../../redux/slices/filterSlice'
 import {  useDispatch } from 'react-redux';
@@ -23,7 +23,7 @@ const Search = () => {
     dispatch(setSearchValue(str)) 
   },350),[])
   
-  const onChangeInput = (event: any) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
     memorizedSearchValue(event.target.value)
    
