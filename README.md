@@ -8,7 +8,8 @@ Pizza-Maggiore is a single-page e-commerce applaction, build with:
 - AJAX (with async/await and try/catch/finally),
 - SASS (Modules),
 - HTML
-- Rerender optimization ( React.Suspense, React.lazy, React.memo, dynamic import, Why-did-you-update, Profiler )
+- Testing: Jest,
+- Rerender optimization ( React.Suspense, React.lazy, React.memo, dynamic import, Why-did-you-update, Profiler ),
 - Mock Server: mockapi.io.
 
 
