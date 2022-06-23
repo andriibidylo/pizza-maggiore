@@ -23,7 +23,6 @@ type SearchPizzaParams = {
 
 const Home = () => {
 
-  // const { searchValue } = useContext(AppContext)
   const { categoryId, sortType, currentPage, searchValue } = useSelector(selectFilters)
 
   const dispatch = useAppDispatch()

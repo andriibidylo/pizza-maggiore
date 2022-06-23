@@ -38,9 +38,8 @@ export type FetchPizzasType = {
 
 export const fetchPizzas = createAsyncThunk<Pizza[], FetchPizzasType>(
   'users/fetchPizzasStatus',
-  async (params) => {
-    const { sortType, categoryId, currentPage, searchValue } = params
-    return await getAllPizzasApi({ sortType, categoryId, currentPage, searchValue })
+  async ({sortType, categoryId, currentPage, searchValue }) => {
+    return await getAllPizzasApi( {sortType, categoryId, currentPage, searchValue} )
   }
 )
 
