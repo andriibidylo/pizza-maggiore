@@ -4,6 +4,7 @@ type CategoryPropsType = {
   value: number,
   onChangeCategory: (index: number) => void
 }
+
 export const categories = [
   "All",
   "Meat",

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { FetchPizzasType} from '../redux/pizzas/slice';
-import {Pizza} from '../redux/pizzas/types'
+import { FetchPizzasType } from '../redux/pizzas/slice';
+import { Pizza } from '../redux/pizzas/types'
 
 
 export const getAllPizzasApi = async ({
@@ -10,7 +10,6 @@ export const getAllPizzasApi = async ({
   searchValue
 }: FetchPizzasType
 ) => {
-
   const apiEndpoint = "https://62aba2a1bd0e5d29af136c7a.mockapi.io"
   let searchByCategory = categoryId > 0 ? `&category=${categoryId}` : ""
   const { data } = await axios

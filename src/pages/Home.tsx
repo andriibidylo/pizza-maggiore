@@ -34,6 +34,8 @@ const Home = () => {
 
   const navigate = useNavigate();
   const isSearch = useRef(false);
+  
+  // To check if the Home coponent was rendered
   const isMounted = useRef(false);
 
 

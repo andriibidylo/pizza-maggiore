@@ -4,22 +4,23 @@ import Search from './Search'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../redux/cart/selectors'
 import { useLocation } from 'react-router';
-import {useEffect, useRef} from 'react'
+import { useEffect, useRef } from 'react'
 
 
 const Header = () => {
 
-  const { items ,totalPrice, totalCaunt } = useSelector(selectCart)
-  
-const isMounted = useRef(false)
+  const { items, totalPrice, totalCaunt } = useSelector(selectCart)
 
+  const isMounted = useRef(false)
+
+  // Set cart items to localStorage after second rerender
   useEffect(() => {
-    if (isMounted.current){
+    if (isMounted.current) {
       const json = JSON.stringify(items)
       localStorage.setItem("cart", json)
     }
-    isMounted.current= true;
-  },[items])
+    isMounted.current = true;
+  }, [items])
 
   const location = useLocation()
 
@@ -36,8 +37,8 @@ const isMounted = useRef(false)
           </div>
         </Link>
         {(!location.pathname.includes('pizza')
-         && !location.pathname.includes('cart')) 
-         &&
+          && !location.pathname.includes('cart'))
+          &&
           <Search />
         }
         <div className="header__cart">

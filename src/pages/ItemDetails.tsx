@@ -15,6 +15,9 @@ const ItemDetails: React.FC = () => {
   const navigate = useNavigate()
   const { id } = useParams()
 
+  
+  // Fetch one pizza and set data to store
+
   useEffect(() => {
     const featchPizza = async () => {
       try {
