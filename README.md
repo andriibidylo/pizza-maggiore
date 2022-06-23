@@ -14,11 +14,11 @@ Pizza-Maggiore is a single-page e-commerce applaction, build with:
 
 ## Final Product
 
-!["main_page_1"]('')
+!["main_page_1"](https://github.com/andrewbidylo/pizza-maggiore/blob/master/docs/home.png?raw=true)
 
-!["cart_page_2"]('')
+!["cart_page_2"](https://github.com/andrewbidylo/pizza-maggiore/blob/master/docs/cart.png?raw=true)
 
-!["search_3"]('')
+!["search_3"](https://github.com/andrewbidylo/pizza-maggiore/blob/master/docs/search.png?raw=true)
 
 
 ## Dependencies
