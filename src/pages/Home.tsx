@@ -1,16 +1,18 @@
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Categories } from '../components/Categories'
-import { Sort, list } from '../components/Sort'
+import { Sort, list, SortTypeParams } from '../components/Sort'
 import { PizzaBlock } from '../components/PizzaBlock'
 import { Placeholder } from '../components/Placeholder'
 import { Pagination } from '../components/Pagination'
 import { fetchPizzas, selectPizzas } from '../redux/slices/pizzasSlice'
 import { selectFilters } from '../redux/slices/filterSlice'
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import qs from 'qs';
 import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
 import { useAppDispatch } from '../redux/store'
+import { categories } from '../components/Categories'
+
 
 type SearchPizzaParams = {
   sortProperty: string;
@@ -66,8 +68,6 @@ const Home = () => {
           }),
         );
       }
-
-
       isSearch.current = true;
     }
 
@@ -85,13 +85,19 @@ const Home = () => {
     isSearch.current = false;
   }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
 
+  const changeCategory = useCallback(
+    (id: number) => dispatch(setCategoryId(id))
+    , [categoryId])
+
+  const changeSort = useCallback((obj:SortTypeParams) => dispatch(setSortType(obj)),[])
+
   return (
     <>
       <div className="content__top">
-        <Categories value={categoryId} onChangeCategory={(id) => dispatch(setCategoryId(id))} />
-        <Sort value={sortType} onChangeSort={(obj) => dispatch(setSortType(obj))} />
+        <Categories value={categoryId} onChangeCategory={changeCategory} />
+        <Sort value={sortType}  onChangeSort={changeSort}/>
       </div>
-      <h2 className="content__title">All pizzas</h2>
+      <h2 className="content__title">{categoryId ? categories[categoryId] : "All"} pizzas</h2>
       {status === "error"
         ? (
           <div className="content__error-info">
@@ -106,10 +112,10 @@ const Home = () => {
                 />
               )
               : items.map((obj) => (
-                  <PizzaBlock
-                    key={obj.id}
-                    {...obj}
-                  />
+                <PizzaBlock
+                  key={obj.id}
+                  {...obj}
+                />
               ))}
           </div>)}
 
