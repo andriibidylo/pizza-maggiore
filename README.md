@@ -2,13 +2,13 @@
 
 Pizza-Maggiore is a single-page e-commerce applaction, build with:
 - TypeScript,
-- React (Hooks: useState, useEffect, useCallback, useRef, useMemo), 
+- React (Hooks: useState, useEffect, useCallback, useRef), 
 - Redux (Redux Toolkit: useSelector, useDispatch),
-- React Router (useParams, Link, useNavigate),
+- React Router (Routes, Route, useParams, Link, useNavigate),
 - AJAX (with async/await and try/catch/finally),
 - SASS (Modules),
 - HTML
-- Rerender optimization ( React.Suspense, React.lazy, React dynamic import, Why-did-you-update, Profiler )
+- Rerender optimization ( React.Suspense, React.lazy, React.memo, dynamic import, Why-did-you-update, Profiler )
 - Mock Server: mockapi.io.
 
 
