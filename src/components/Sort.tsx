@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, memo } from "react"
 import {SortType} from '../redux/slices/filterSlice'
-import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate'
+
 
 export type SortTypeParams = {
   name: string,
@@ -21,7 +21,7 @@ type PopUpClick = MouseEvent & {
   path: Node[]
 }
 export const Sort: React.FC<SortPropsType> = memo(({ value, onChangeSort }) => {
-  useWhyDidYouUpdate('Sort', { value, onChangeSort })
+
   // close the popup window the click out of the popup
   const sortRef = useRef<HTMLDivElement>(null)
   useEffect(() => {

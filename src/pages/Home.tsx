@@ -36,6 +36,7 @@ const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
+
   // If was the first render and params were changed
   useEffect(() => {
     if (isMounted.current) {

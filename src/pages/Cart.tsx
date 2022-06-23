@@ -14,7 +14,7 @@ const Cart = () => {
       dispatch(clearCart());
     }
   };
-  if (!totalCaunt){
+  if (!items){
     return <CartIsEmpty/>
   }
   return (
