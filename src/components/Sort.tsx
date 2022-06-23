@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, memo } from "react"
-import {SortType} from '../redux/slices/filterSlice'
+import {SortType} from '../redux/filter/types'
 
 
 export type SortTypeParams = {

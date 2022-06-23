@@ -2,7 +2,7 @@ import logoSvg from '../assets/img/pizza-logo.svg'
 import { Link } from "react-router-dom";
 import Search from './Search'
 import { useSelector } from 'react-redux'
-import { selectCart } from '../redux/slices/cartSlice'
+import { selectCart } from '../redux/cart/selectors'
 import { useLocation } from 'react-router';
 import {useEffect, useRef} from 'react'
 
@@ -20,8 +20,6 @@ const isMounted = useRef(false)
     }
     isMounted.current= true;
   },[items])
-
-  console.log(items)
 
   const location = useLocation()
 

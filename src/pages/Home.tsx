@@ -1,17 +1,17 @@
+import { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../redux/store'
 import { useNavigate } from 'react-router-dom'
-import { Categories } from '../components/Categories'
+import qs from 'qs';
+import { Categories , categories} from '../components/Categories'
 import { Sort, list, SortTypeParams } from '../components/Sort'
 import { PizzaBlock } from '../components/PizzaBlock'
 import { Placeholder } from '../components/Placeholder'
 import { Pagination } from '../components/Pagination'
-import { fetchPizzas, selectPizzas } from '../redux/slices/pizzasSlice'
-import { selectFilters } from '../redux/slices/filterSlice'
-import { useCallback, useEffect, useRef } from 'react';
-import qs from 'qs';
-import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
-import { useAppDispatch } from '../redux/store'
-import { categories } from '../components/Categories'
+import { fetchPizzas } from '../redux/pizzas/slice'
+import {selectPizzas} from '../redux/pizzas/selectors'
+import { selectFilters } from '../redux/filter/selectors'
+import { setCategoryId, setSortType, setCurrentPage, setFilters } from '../redux/filter/slice'
 
 
 type SearchPizzaParams = {

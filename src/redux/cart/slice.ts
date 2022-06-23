@@ -1,27 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getCartItemsFromLS } from '../../utils/getCartItemsFromLS'
-import { RootState } from '../store'
 import {calcTotalPrice} from '../../utils/calcTotalPrice'
+import { CartItemType, CartSliceState } from './types'
 
-export type CartItemType = {
-  id: string,
-  title: string,
-  price: number,
-  imageUrl: string,
-  type: string,
-  size: number,
-  count: number,
-}
 
-interface CartSliceState {
-  totalPrice: number,
-  totalCaunt: number,
-  items: CartItemType[]
-}
+
+const { items, totalPrice, totalCaunt} = getCartItemsFromLS()
+
 const initialState: CartSliceState = {
-  totalPrice: 0,
-  totalCaunt: 0,
-  items: getCartItemsFromLS()
+  totalCaunt,
+  totalPrice,
+  items
+
 }
 
 
@@ -36,17 +26,11 @@ export const cartSlice = createSlice({
         findItem.count += 1
 
       } else {
-        state.items.push(action.payload)
-
+        state.items.push(action.payload) 
       }
-
       state.totalCaunt += 1
-
+   
       state.totalPrice = calcTotalPrice(state.items)
-      // state.totalPrice = state.items.reduce((sum, obj) => {
-      //   return (obj.price * state.totalCaunt) + sum
-      // }, 0)
-
     },
     subtractItem: (state, action:PayloadAction<string>) => {
       const findItem = state.items.find(obj => obj.id === action.payload)
@@ -55,9 +39,7 @@ export const cartSlice = createSlice({
         findItem.count -= 1
       }
       state.totalCaunt -= 1
-      state.totalPrice = state.items.reduce((sum, obj) => {
-        return (obj.price * state.totalCaunt) + sum
-      }, 0)
+      state.totalPrice = calcTotalPrice(state.items);
 
     },
     removeItem: (state, action:PayloadAction<string>) => {
@@ -77,8 +59,6 @@ export const cartSlice = createSlice({
   },
 })
 
-export const selectCart = (state: RootState) => state.cart
-export const selectCartItemById = (id: string) => (state: RootState) => state.cart.items.find((obj) => obj.id === id)
 export const { addItem, removeItem, clearCart, subtractItem } = cartSlice.actions
 
 export default cartSlice.reducer
