@@ -28,10 +28,7 @@ const Home = () => {
   const { categoryId, sortType, currentPage, searchValue } = useSelector(selectFilters)
 
   const dispatch = useAppDispatch()
-
   const { items, status } = useSelector(selectPizzas)
-
-
   const navigate = useNavigate();
   const isSearch = useRef(false);
   

@@ -17,7 +17,7 @@ const Cart = () => {
     }
   };
   // If no items show empty cart component
-  if (!items) {
+  if (!totalPrice) {
     return <CartIsEmpty />
   }
   return (

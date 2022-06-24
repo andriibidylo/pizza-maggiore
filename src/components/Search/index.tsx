@@ -18,7 +18,7 @@ const Search = () => {
   }
 
   // Optimization the search field. Update setSerchValue after some time.
-  // eslint-disable-next-line 
+
   const memorizedSearchValue = useCallback(debounce(str=>{
     dispatch(setSearchValue(str)) 
   },350),[])
