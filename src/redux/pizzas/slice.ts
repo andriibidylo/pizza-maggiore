@@ -4,9 +4,6 @@ import { SortTypeParams } from '../../components/Sort';
 import { Pizza, PizzasSliceState, Status } from './types';
 
 
-
-
-
 const initialState: PizzasSliceState = {
   status: Status.LOADING,
   items: []
@@ -25,7 +22,6 @@ export const fetchPizzas = createAsyncThunk<Pizza[], FetchPizzasType>(
     return await getAllPizzasApi( {sortType, categoryId, currentPage, searchValue} )
   }
 )
-
 
 export const pizzasSlice = createSlice({
   name: 'pizzas',

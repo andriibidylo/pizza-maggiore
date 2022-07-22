@@ -17,7 +17,7 @@ const Search = () => {
     searchRef.current?.focus()
   }
 
-  // Optimization the search field. Update setSerchValue after some time.
+  // Optimization the search field. Update setSerchValue after same time.
 
   const memorizedSearchValue = useCallback(debounce(str=>{
     dispatch(setSearchValue(str)) 
