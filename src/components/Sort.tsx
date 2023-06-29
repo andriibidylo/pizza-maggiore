@@ -8,7 +8,7 @@ export type SortTypeParams = {
 }
 
 export const list: SortTypeParams[] = [
-  { name: "popular", sortProperty: "rating" },
+  { name: "popularity", sortProperty: "rating" },
   { name: "price", sortProperty: "price" },
   { name: "name", sortProperty: "title" }
 ]

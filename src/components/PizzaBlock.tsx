@@ -68,7 +68,7 @@ export const PizzaBlock: React.FC<PizzaBlockPropsType> = ({ id, price, title, im
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">start from ${price}</div>
+        <div className="pizza-block__price">starts from ${price}</div>
         <button onClick={onClickAdd} className="button button--outline button--add">
           <svg
             width="12"

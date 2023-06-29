@@ -7,7 +7,7 @@ const initialState:FilterSliceState= {
   categoryId: 0,
   currentPage: 1,
   sortType: {
-    name: "popular", sortProperty: "rating"
+    name: "popularity", sortProperty: "rating"
   }
 }
 
